@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/gq-security/gq-security.iml" filepath="$PROJECT_DIR$/gq-security/gq-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gq-security-app/gq-security-app.iml" filepath="$PROJECT_DIR$/gq-security-app/gq-security-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gq-security-borrow/gq-security-borrow.iml" filepath="$PROJECT_DIR$/gq-security-borrow/gq-security-borrow.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gq-security-core/gq-security-core.iml" filepath="$PROJECT_DIR$/gq-security-core/gq-security-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gq-security-demo/gq-security-demo.iml" filepath="$PROJECT_DIR$/gq-security-demo/gq-security-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-security.iml" filepath="$PROJECT_DIR$/.idea/spring-security.iml" />
+    </modules>
+  </component>
+</project>
