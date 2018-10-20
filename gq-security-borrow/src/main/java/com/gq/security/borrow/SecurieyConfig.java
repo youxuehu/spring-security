@@ -1,5 +1,6 @@
 package com.gq.security.borrow;
 
+import com.gq.security.core.validate.ValidateCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.gq.security.borrow.authentication.MyAuthencatitionFailureHandler;
 import com.gq.security.borrow.authentication.MyAuthenticationSuccessHandler;
 import com.gq.security.core.properties.SecurityProperties;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 @Configuration
 public class SecurieyConfig extends WebSecurityConfigurerAdapter	{
 
@@ -28,7 +31,12 @@ public class SecurieyConfig extends WebSecurityConfigurerAdapter	{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
- 		http.formLogin() 
+ 		ValidateCodeFilter filter = new ValidateCodeFilter();
+ 		filter.setAuthenticationFailureHandler(myAuthencatitionFailureHandler);
+
+		http
+		.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
+		.formLogin()
  		.loginPage("/authentication/require")
  		.loginProcessingUrl("/authentication/form")
  		.successHandler(myAuthenticationSuccessHandler)
@@ -36,7 +44,8 @@ public class SecurieyConfig extends WebSecurityConfigurerAdapter	{
 		.and()
 		.authorizeRequests()
 		.antMatchers("/authentication/require",
-				securityProperties.getBorrow().getLoginPage()).permitAll()	
+				securityProperties.getBorrow().getLoginPage(),
+				"/image/code").permitAll()
 		.anyRequest()
 		.authenticated()
 		.and()

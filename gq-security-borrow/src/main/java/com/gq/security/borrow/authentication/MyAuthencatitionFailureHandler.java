@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gq.security.borrow.support.SimpleResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class MyAuthencatitionFailureHandler extends SimpleUrlAuthenticationFailu
 		if(LoginType.JSON.equals(securityProperties.getBorrow().getLoginType())) {
 			response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 			response.setContentType("application/json;charset=utf-8");
-			response.getWriter().write(objectMapper.writeValueAsString(exception));
+			response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(exception.getMessage())));
 		}
 		else {
 			super.onAuthenticationFailure(request, response, exception);
